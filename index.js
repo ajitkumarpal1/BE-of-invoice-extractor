@@ -51,10 +51,10 @@ app.post('/upload', upload.single('pdf'), async (req, res) => {
             if(element != '"'){
                 finalResult += element
             }else{
-                finalResult += "$"
+                finalResult += "🖖"
             }
         });
-        finalResult = finalResult.replace(/\$/g, '"');
+        finalResult = finalResult.replace(/\🖖/g, '"');
         finalResult = JSON.parse(finalResult)
         res.json(finalResult);
     } catch (error) {

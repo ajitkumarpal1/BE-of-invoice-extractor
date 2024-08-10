@@ -81,30 +81,8 @@ async function extractTextFromPDF(buffer) {
     }
 }
 
-/* OpenAI Integration */
-/* async function classifyInvoiceDetails(text) {
-    try {
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: "gpt-3.5-turbo",
-            messages: [
-                { role: "system", content: "You are a helpful assistant." },
-                { role: "user", content: `Extract and classify the following invoice details: ${text}` }
-            ],
-            max_tokens: 150,
-            temperature: 0.5,
-        }, {
-            headers: {
-                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-                'Content-Type': 'application/json'
-            }
-        });
+/* gemini Integration */
 
-        return response.data.choices[0].message.content.trim();
-    } catch (error) {
-        console.error('Error with OpenAI API request:', error.response ? error.response.data : error.message);
-        throw new Error('Failed to classify invoice details');
-    }
-} */
 async function classifyInvoiceDetails(promtPDF) {
     const prompt = `Extract and classify the following invoice details into this JSON format: 
 {
@@ -120,5 +98,3 @@ async function classifyInvoiceDetails(promtPDF) {
     const text = response.text();
     return { text }
 }
-
-
